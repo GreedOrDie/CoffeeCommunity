@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>community-page</title>
+</head>
+<body>
+<h1>Welcome to Coffee Community!{{#user}}{{username}}{{/user}}</h1><br>
+<div>
+    <h2>Recent Submissions</h2><br>
+    <ul>
+        {{#coffee}}
+        <li><a href="/coffee/{{id}}"><button type="submit">{{name}}</button></a></li>
+        {{/coffee}}
+    </ul>
+</div>
+<div>
+    <h2>Add Coffee To Our List!</h2>
+    <a href="/add-coffee"><button type="button">Add Coffee</button></a>
+    </div>
+<div>
+    <h2>Search for Coffee</h2>
+</div>
+
+<div>
+    <form action="/registration" method="get">
+        <a href="/registration"><button type="submit">Register</button></a>
+    </form>
+    </div>
+
+<div>
+    <form action="/login" method="post">
+        <input type="text" placeholder="User Name" name="username"><br>
+        <input type="text" placeholder="Password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+    </div>
+<div>
+
+    <h3>Your Profile</h3>
+    <a href="/user-account"><button type="submit">Profile</button></a><br>
+</div>
+
+<div>
+    <form action="/logout" method="post">
+        <button type="submit" >Logout</button>
+    </form>
+</div>
+
+
+</body>
+</html>

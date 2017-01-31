@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>coffee</title>
+</head>
+<body>
+<div>
+    <h1>Coffee Specs</h1>
+{{#coffee}}
+{{name}}<br>
+{{description}}<br>
+{{price}}<br>
+{{manufacturer}}<br>
+{{submitted}}<br>
+{{/coffee}}
+</div>
+<div>
+    <h2>Add this coffee to your preferred list?</h2>
+    <a href="/add-preference"><button type="submit">Add</button></a>
+    </div>
+<div>
+    <h2>Tag this coffee!</h2>
+    <form action="/create-tag" method="post">
+        <input type="text" placeholder="Tag Here" name="description">
+        <button type="submit">Tag</button>
+        </form>
+    </div>
+<div>
+    <h2>Tags for this Coffee Flavor</h2>
+    {{#tags}}
+    {{description}}<br>
+    {{/tags}}
+    {{^tags}}
+    No Tags Yet! Why not be the first?
+    {{/tags}}
+
+    </div>
+<div>
+<h2>Want to buy this coffee?</h2>
+</div>
+<div>
+    <h3>Head back to the Coffee List</h3>
+    <a href="/"><button type="submit">Coffee</button></a>
+    </div>
+
+<div>
+    <form action="/logout" method="post">
+        <button type="submit" >Logout</button>
+    </form>
+</div>
+</body>
+</html>
