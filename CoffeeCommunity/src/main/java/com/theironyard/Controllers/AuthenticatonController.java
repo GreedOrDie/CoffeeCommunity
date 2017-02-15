@@ -43,7 +43,7 @@ public class AuthenticatonController {
      */
     @RequestMapping(path = "/registration", method = RequestMethod.POST)
     public String register(HttpSession session, UserCommand command) throws PassHash.CannotPerformOperationException, PassHash.InvalidHashException {
-        User user = userRepository.findFirstByName(command.getUsername());
+        User user = userRepository.findFirstByUsername(command.getUsername());
         if(user == null){
             user = new User(command.getName(), command.getEmail(), command.getPhone(), command.getUsername(), PassHash.createHash(command.getPassword()));
             userRepository.save(user);
@@ -79,16 +79,31 @@ public class AuthenticatonController {
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, UserCommand command) throws PassHash.InvalidHashException, PassHash.CannotPerformOperationException {
-        User user = userRepository.findFirstByName(command.getUsername());
-        if(user != userRepository.findFirstByName(command.getUsername())){
-                return "redirect:/";
+        User user = userRepository.findFirstByUsername(command.getUsername());
+//        if(user.isActive(false)){
+//            return "redirect:/inactive-user";
+//        } else
+//
+        if(user != userRepository.findFirstByUsername(command.getUsername())){
+            return "verification-error";
         } else if(!PassHash.verifyPassword(command.getPassword(), user.getPassword())){
-            return "redirect:/";
+            return "verification-error";
         }
-        session.setAttribute(CURRENT_USER, user.getUsername());
+        session.setAttribute(CURRENT_USER, command.getUsername());
         return "redirect:/user-account";
     }
 
+
+    /**
+     * Gets the logout Post path
+     * @param session
+     * @return
+     */
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public String getLogout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 
     /**
      * logs the user out

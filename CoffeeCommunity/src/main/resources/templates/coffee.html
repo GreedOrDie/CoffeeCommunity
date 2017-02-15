@@ -2,52 +2,221 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Food Bingo - Bootstrap Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+
+    <!-- Template CSS Files  -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="js/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="js/plugins/datepicker/datepicker.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/my-style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/fav-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/fav-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/fav-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/fav-57.png">
+    <link rel="shortcut icon" href="images/fav.png">
+
+
+
     <title>coffee</title>
 </head>
 <body>
-<div>
-    <h1>Coffee Specs</h1>
-{{#coffee}}
-{{name}}<br>
-{{description}}<br>
-{{price}}<br>
-{{manufacturer}}<br>
-{{submitted}}<br>
-{{/coffee}}
-</div>
-<div>
-    <h2>Add this coffee to your preferred list?</h2>
-    <a href="/add-preference"><button type="submit">Add</button></a>
-    </div>
-<div>
-    <h2>Tag this coffee!</h2>
-    <form action="/create-tag" method="post">
-        <input type="text" placeholder="Tag Here" name="description">
-        <button type="submit">Tag</button>
-        </form>
-    </div>
-<div>
-    <h2>Tags for this Coffee Flavor</h2>
-    {{#tags}}
-    {{description}}<br>
-    {{/tags}}
-    {{^tags}}
-    No Tags Yet! Why not be the first?
-    {{/tags}}
 
+<!-- Header Starts -->
+<header class="main-header">
+    <!-- Nested Container Starts -->
+    <div class="container text-center-xs">
+        <!-- Nested Row Starts -->
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <!-- Logo Starts -->
+                <h1 id="logo"><a href="/">Coffee Community</a></h1>
+                <!-- Logo Ends -->
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <!-- Top Links Starts -->
+                <ul class="list-unstyled list-inline top-links text-right-lg text-right-md text-right-sm text-bold">
+                    <li><a href="/registration">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+                <!-- Top Links Ends -->
+            </div>
+        </div>
+        <!-- Nested Row Ends -->
     </div>
-<div>
-<h2>Want to buy this coffee?</h2>
-</div>
-<div>
-    <h3>Head back to the Coffee List</h3>
-    <a href="/"><button type="submit">Coffee</button></a>
+    <!-- Nested Container Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Main Menu Starts -->
+<nav id="nav" class="main-menu navbar flat">
+    <!-- Nested Container Starts -->
+    <div class="container">
+        <!-- Nav Header Starts -->
+        <div class="navbar-header">
+            <button type="button" class="btn btn-navbar navbar-toggle flat animation" data-toggle="collapse" data-target=".navbar-cat-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- Nav Header Ends -->
+        <!-- Navbar Cat collapse Starts -->
+        <div class="collapse navbar-collapse navbar-cat-collapse">
+            <ul class="nav navbar-nav text-uppercase text-bold">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about-us">About Us</a></li>
+                <li><a href="/coffee-list">Coffee List</a></li>
+                <li class="active"><a href="/registration">Login &amp; Register</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu flat pull-right-md pull-right-sm">
+                        <li><a tabindex="-1" href="/"><i class="fa fa-angle-right"></i> Home</a></li>
+                        <li><a tabindex="-1" href="/about-us"><i class="fa fa-angle-right"></i> About Us</a></li>
+                        <li><a tabindex="-1" href="/coffee-list"><i class="fa fa-angle-right"></i> Coffee List</a></li>
+                        <li><a tabindex="-1" href="/user-account"><i class="fa fa-angle-right"></i>Account</a></li>
+                        <li class="active"><a tabindex="-1" href="/registration"><i class="fa fa-angle-right"></i> Login &amp; Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Navbar Cat collapse Ends -->
+    </div>
+    <!-- Nested Container Ends -->
+</nav>
+<!-- Main Menu Ends -->
+
+<!-- Main Container Starts -->
+<div class="container main-container">
+    <!-- Intro Content Starts -->
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h1 class="text-center text-light text-spl-color">Coffee Specs</h1><br>
+            {{#coffee}}
+            <div class="text-center text-muted">
+                <p><h2>{{name}}</h2></p>
+                <p><h3>{{description}}</h3></p>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Intro Content Ends -->
+    <!-- Spacer Starts -->
+    <div class="spacer-1 hidden-xs"></div>
+    <!-- Spacer Ends -->
+    <!-- Starts -->
+    <div class="row">
+        <div class="col-sm-6 col-xs-12 col-md-offset-1">
+            <div>
+            <ul class="list-style-1 text-center-xs">
+                {{#tags}}
+                <li>{{description}}</li>
+                {{/tags}}
+                {{^tags}}
+                No Tags for this Coffee yet! Why not be the first?
+                {{/tags}}
+            </ul>
+            </div>
+            <div>
+                <h2>Tag this coffee!</h2>
+                <form action="/create-tag" method="post">
+                    <input type="hidden" name="id" value="{{id}}"/>
+                    <input type="text" placeholder="Tag Here" name="description">
+                    <button type="submit">Tag</button>
+                </form>
+            </div>
+            <div>
+                <h2>Prefer this Coffee!</h2>
+                <form action="/add-preference" method="post">
+                    <input type="hidden" name="id" value="{{id}}"/>
+                    <button type="submit">Add</button>
+                </form>
+                <button type="submit" class="btn btn-tertiary animation" id="rate_btn" data-toggle="modal" data-target="#rateModal">
+                    Rate Coffee <i class="fa fa-caret-center"></i>
+                </button>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    {{/coffee}}
+    <!-- Register Modal Window Starts -->
+    <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="registerModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content no-boxshadow text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-spl-color" id="rateModalLabel">Rate This Coffee</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Coffee Form Starts -->
+                    <form action="/rate-coffee" method="post">
+                        <input type="hidden" name="id" value="{{coffee.id}}">
+                        <div class="form-group2" style="">
+                            <input type="radio" name="rate" value="1">
+                            <i class="fa fa-star" data-rating="1"></i><br>
+                            <input type="radio" name="rate" value="2">
+                            <i class="fa fa-star" data-rating="2"></i><i class="fa fa-star"></i><br>
+                            <input type="radio" name="rate" value="3">
+                            <i class="fa fa-star" data-rating="3"><i class="fa fa-star"></i><i class="fa fa-star"></i></i><br>
+                            <input type="radio" name="rate" value="4">
+                            <i class="fa fa-star" data-rating="4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></i><br>
+                            <input type="radio" name="rate" value="5">
+                            <i class="fa fa-star" data-rating="5"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><br>
+                        </div>
+
+                        <button type="submit" class="btn btn-lg btn-block btn-tertiary animation">
+                            Rate! <i class="fa fa-caret-right"></i>
+                        </button>
+                    </form>
+                    <!-- Add Coffee Form Ends -->
+                </div>
+            </div>
+        </div>
     </div>
 
-<div>
-    <form action="/logout" method="post">
-        <button type="submit" >Logout</button>
-    </form>
+    <!-- Ends -->
 </div>
+<!-- Main Container Ends -->
+
+
+<!-- Template JS Files -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+<script src="js/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="js/plugins/owl-carousel/owl.carousel.js"></script>
+<script src="js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
+<script src="js/custom.js"></script>
+
+
+
 </body>
 </html>

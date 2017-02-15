@@ -1,16 +1,33 @@
 package com.theironyard.Command;
 
+import com.theironyard.Entities.Coffee;
+import com.theironyard.Entities.Rating;
+import com.theironyard.Entities.User;
+
 /**
  * Created by darionmoore on 1/26/17.
  */
 public class UserCommand {
+
+    private int id;
     private String name;
     private String email;
     private String phone;
     private String username;
     private String password;
+    private boolean isActive;
+    private Coffee preference;
+    private Rating rate;
 
     public UserCommand() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,5 +68,30 @@ public class UserCommand {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public User setActive(boolean active) {
+        isActive = active;
+        return null;
+    }
+
+    public Coffee getPreference() {
+        return preference;
+    }
+
+    public void setPreference(Coffee preference) {
+        this.preference = preference;
+    }
+
+    public Rating getRate() {
+        return rate;
+    }
+
+    public void setRate(Rating rate) {
+        this.rate = rate;
     }
 }

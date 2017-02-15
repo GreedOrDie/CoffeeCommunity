@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+
+    <!-- Template CSS Files  -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="js/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="js/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="js/plugins/datepicker/datepicker.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/my-style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/fav-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/fav-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/fav-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/fav-57.png">
+    <link rel="shortcut icon" href="images/fav.png">
+    <title>coffee-not-found</title>
+</head>
+<body>
+<!-- Header Starts -->
+<header class="main-header">
+    <!-- Nested Container Starts -->
+    <div class="container text-center-xs">
+        <!-- Nested Row Starts -->
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <!-- Logo Starts -->
+                <h1 id="logo"><a href="/">Coffee Community</a></h1>
+                <!-- Logo Ends -->
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <!-- Top Links Starts -->
+                <ul class="list-unstyled list-inline top-links text-right-lg text-right-md text-right-sm text-bold">
+                    <li><a href="/registration">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+                <!-- Top Links Ends -->
+            </div>
+        </div>
+        <!-- Nested Row Ends -->
+    </div>
+    <!-- Nested Container Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Main Menu Starts &ndash;&gt;-->
+<nav id="nav" class="main-menu navbar flat">
+    <!-- Nested Container Starts -->
+    <div class="container">
+        <!-- Nav Header Starts -->
+        <div class="navbar-header">
+            <button type="button" class="btn btn-navbar navbar-toggle flat animation" data-toggle="collapse" data-target=".navbar-cat-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- Nav Header Ends -->
+        <!-- Navbar Cat collapse Starts -->
+        <div class="collapse navbar-collapse navbar-cat-collapse">
+            <ul class="nav navbar-nav text-uppercase text-bold">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about-us">About Us</a></li>
+                <li><a href="coffee-list.html">Coffee List</a></li>
+                <li class="active"><a href="registration.html">Login &amp; Register</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu flat pull-right-md pull-right-sm">
+                        <li><a tabindex="-1" href="/"><i class="fa fa-angle-right"></i> Home</a></li>
+                        <li><a tabindex="-1" href="/about-us"><i class="fa fa-angle-right"></i> About Us</a></li>
+                        <li><a tabindex="-1" href="/coffee-list"><i class="fa fa-angle-right"></i> Coffee List</a></li>
+                        <li><a tabindex="-1" href="/user-account"><i class="fa fa-angle-right"></i>Account</a></li>
+                        <li class="active"><a tabindex="-1" href="/registration"><i class="fa fa-angle-right"></i> Login &amp; Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Navbar Cat collapse Ends -->
+    </div>
+    <!-- Nested Container Ends -->
+</nav>
+<!-- Main Menu Ends -->
+
+<!-- Main Container Starts -->
+<div class="main-container container">
+
+    <!-- Starts -->
+
+    <div class="row">
+        <!-- Sidearea Starts -->
+
+        <div class="col-md-3 col-sm-4 col-xs-12">
+            <!-- Sidearea Filters Starts -->
+            <div class="sidearea-filter">
+                <!-- Search Field Starts -->
+                <form class="top-search" method="get" action="/search">
+                    <div class="input-group sidearea-filter-search">
+                        <input type="text" class="form-control flat" name="search" placeholder="Search for...">
+                        <span class="input-group-btn">
+								<button class="btn btn-default flat" type="submit"><i class="fa fa-search"></i></button>
+							</span>
+
+                    </div>
+                </form>
+                <!-- Search Field Ends -->
+                <!-- Register Modal Window Starts -->
+                <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content no-boxshadow text-center">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-spl-color" id="registerModalLabel">Add Coffee</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Add Coffee Form Starts -->
+                                <form action="/add-coffee" method="post">
+                                    <div class="form-group">
+                                        <label class="sr-only" name="name">Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" name="description">Description</label>
+                                        <input type="text" class="form-control" name="description" placeholder="description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" name="price">Price</label>
+                                        <input type="text" class="form-control" name="price" placeholder="Price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" name="manufacturer">Manufacturer</label>
+                                        <input type="text" class="form-control" name="manufacturer" placeholder="manufacturer">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-lg btn-block btn-tertiary animation">
+                                        Add <i class="fa fa-caret-right"></i>
+                                    </button>
+                                </form>
+                                <!-- Add Coffee Form Ends -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sort By Field Starts -->
+                <select class="form-control flat sidearea-filter-sort">
+                    <option>Sort by : Popularity</option>
+                    <option>Top Rated</option>
+                    <option>Latest</option>
+                    <option>Cost</option>
+                    <option>Cheap</option>
+                </select>
+                <!-- Sort By Field Ends -->
+                <button type="submit" class="btn btn-block btn-tertiary animation" data-toggle="modal" data-target="#registerModal">
+                    Add Coffee <i class="fa fa-caret-right"></i>
+                </button>
+
+                <!-- Filter By Cuisines Starts -->
+                <h6 class="sidearea-filter-title">Filter By Tag</h6>
+                <div class="sidearea-filter-checkbox-list">
+                    {{#tags}}
+                    <label class="radio">
+                        <input type="radio"  value="tags"> {{description}}
+                    </label>
+                    {{/tags}}
+                </div>
+                <!-- Filter By Cuisines Ends -->
+            </div>
+            <!-- Sidearea Filters Ends -->
+            <!-- Spacer For Smaller Devices -->
+            <p class="visible-xs"><br></p>
+            <!-- Spacer For Smaller Ends -->
+        </div>
+        <!-- Sidearea Ends -->
+        <!-- Mainarea Starts -->
+        <div class="col-md-9 col-sm-8 col-xs-12">
+            <!-- Hotels List Starts -->
+            <div class="hotels-list text-center-sm text-center-xs">
+                <!-- List #1 Starts -->
+                <h5 class="list-box-info-title">We Couldn't Find the Coffee you were looking for!</h5>
+                {{#search}}
+                <div class="list-box clearfix">
+                    <!-- List Thumb Starts -->
+                    <div class="pull-left-lg pull-left-md">
+                        <img src="images/hotels/thumb/hotel-list-thumb-img1.jpg" alt="Village Plaza" class="img-responsive thumbnail img-center-sm img-center-xs">
+                    </div>
+                    <!-- List Thumb Ends -->
+                    <!-- List Descriptions Starts -->
+
+                    <div class="pull-left-lg pull-left-md list-box-info">
+                        <h5 class="list-box-info-title"><a href="/coffee?id={{id}}">{{name}}</a></h5>
+                        <ul class="list-unstyled list-inline list-box-info-tags">
+                            <li><p>{{description}}</p></li>
+                            {{#tags}}
+                            <li>{{description}}</li>
+                            {{/tags}}
+                            {{^tags}}
+                            No Tags for this coffee yet!
+                            {{/tags}}
+                            {{#rates}}
+                            <li>{{rate}}</li>
+                            {{/rates}}
+                        </ul>
+
+                        <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="registerModal">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content no-boxshadow text-center">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title text-spl-color" >Tag This Coffee!</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Add Coffee Form Starts -->
+                                        <form action="/create-tag" method="post">
+                                            <div class="form-group">
+                                                <label class="sr-only" name="description">Tag</label>
+                                                <input type="text" class="form-control" name="description" placeholder="Tag">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-lg btn-block btn-tertiary animation">
+                                                Tag <i class="fa fa-caret-right"></i>
+                                            </button>
+                                        </form>
+                                        <!-- Add Coffee Form Ends -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {{/search}}
+</body>
+</html>

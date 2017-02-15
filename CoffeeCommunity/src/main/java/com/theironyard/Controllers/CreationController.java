@@ -4,8 +4,7 @@ import com.theironyard.Command.CoffeeCommand;
 import com.theironyard.Command.TagCommand;
 import com.theironyard.Entities.Coffee;
 import com.theironyard.Entities.Tag;
-import com.theironyard.Exceptions.CoffeeExistsException;
-import com.theironyard.Exceptions.NotLoggedInException;
+import com.theironyard.Entities.User;
 import com.theironyard.Repositories.CoffeeRepository;
 import com.theironyard.Repositories.TagRepository;
 import com.theironyard.Repositories.UserRepository;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by darionmoore on 1/27/17.
@@ -60,14 +58,11 @@ public class CreationController {
         Coffee coffee = coffeeRepository.findFirstByName(command.getName());
         Coffee newCoffee = new Coffee(command.getName(), command.getDescription(), command.getPrice(), command.getManufacturer(), command.getSubmitted());
         if (session.getAttribute(CURRENT_USER) == null) {
-            throw new NotLoggedInException();
+            return "redirect:/user-exception";
         } else if (newCoffee != coffeeRepository.findFirstByName(command.getName())) {
             coffeeRepository.save(newCoffee);
-        } else {
-            throw new CoffeeExistsException();
         }
-
-        return "redirect:/";
+        return "redirect:/coffee-list";
     }
 
     /**
@@ -77,10 +72,8 @@ public class CreationController {
      * @param session
      * @return
      */
-    @RequestMapping(path = "/coffee-tag", method = RequestMethod.GET)
+    @RequestMapping(path = "/create-tag", method = RequestMethod.GET)
     public String getTag(Model model, HttpSession session) {
-        List<Tag> coffeeTags = tagRepository.findAll();
-        model.addAttribute("tags", coffeeTags);
         return "coffee-tag";
     }
 
@@ -92,25 +85,47 @@ public class CreationController {
      * @return
      */
     @RequestMapping(path = "/create-tag", method = RequestMethod.POST)
-    public String createTag(HttpSession session, TagCommand command) {
-        List<Tag> coffeeTags = tagRepository.findAll();
+    public String createTag(HttpSession session, TagCommand command, int id) {
+        Coffee coffee = coffeeRepository.findOne(id);
         if (session.getAttribute(CURRENT_USER) == null) {
-            throw new NotLoggedInException();
-        } else {
-            Tag newTag = new Tag(command.getDescription());
-            tagRepository.save(newTag);
-            return "redirect:/";
+            return "redirect:/user-exception";
         }
-
-
-//    @RequestMapping(path = "/user-preferences", method = RequestMethod.GET)
-//    public String getPreferences(HttpSession session, Model model, CoffeeCommand command){
-//        List <Coffee> preferences = command.isPreference();
-//
-//    }
-//    @RequestMapping(path = "/add-preference", method = RequestMethod.POST)
-//    public String addPreference(){}
+        Tag newTag = new Tag(command.getDescription());
+        newTag.getCoffeeList().add(coffee);
+        tagRepository.save(newTag);
+        coffee.getTags().add(newTag);
+        coffeeRepository.save(coffee);
+        return "redirect:/coffee?id="+ id;
 
 
     }
+
+
+    /**
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(path = "/add-preference", method = RequestMethod.GET)
+    public String getPreferenceList(HttpSession session, Model model){
+        return "redirect:/add-preference";
+    }
+
+    /**
+     * FINISH THIS METHOD
+     * @param session
+     * @return
+     */
+    @RequestMapping(path = "/add-preference", method = RequestMethod.POST)
+    public String preferenceList(HttpSession session, int id){
+        Coffee coffeeId = coffeeRepository.findOne(id);
+        User userId = userRepository.findFirstByUsername((String)session.getAttribute(CURRENT_USER));
+        userId.getPreferredCoffee().add(coffeeId);
+        coffeeId.getUserPreferee().add(userId);
+        userRepository.save(userId);
+        coffeeRepository.save(coffeeId);
+        return "redirect:/coffee?id=" + id;
+    }
+
+
 }

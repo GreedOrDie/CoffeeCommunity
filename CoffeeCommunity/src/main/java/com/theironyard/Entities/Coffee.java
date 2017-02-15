@@ -2,12 +2,14 @@ package com.theironyard.Entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by darionmoore on 1/25/17.
  */
 @Entity
-@Table(name = "varieties")
+@Table(name = "coffees")
 public class Coffee {
     @Id
     @GeneratedValue
@@ -28,10 +30,23 @@ public class Coffee {
     @Column(nullable = false)
     private LocalDateTime submitted = LocalDateTime.now();
 
-    @ManyToOne
-    Tag tag;
+    @ManyToMany(mappedBy = "preferredCoffee")
+    List<User> userPreferee = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "COFFEE_TAGS", joinColumns = @JoinColumn(name = "COFFEE_ID"),
+               inverseJoinColumns = @JoinColumn(name = "TAG_ID"))
+    List <Tag> tags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "coffeeId")
+    List<Rating> ratings = new ArrayList<>();
+
 
     public Coffee() {
+    }
+
+    public Coffee(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public Coffee(String name, String description, double price, String manufacturer, LocalDateTime submitted) {
@@ -42,17 +57,8 @@ public class Coffee {
         this.submitted = submitted;
     }
 
-    public Coffee(String name, String description, double price, String manufacturer, LocalDateTime submitted, Tag tag) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.manufacturer = manufacturer;
-        this.submitted = submitted;
-        this.tag = tag;
-    }
-
-    public int getId() {
-        return id;
+    public int getId(int id) {
+        return this.id;
     }
 
     public void setId(int id) {
@@ -99,12 +105,29 @@ public class Coffee {
         this.submitted = submitted;
     }
 
-    public Tag getTag() {
-        return tag;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
+
+    public List<User> getUserPreferee() {
+        return userPreferee;
+    }
+
+    public void setUserPreferee(List<User> userPreferee) {
+        this.userPreferee = userPreferee;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
 
 }

@@ -1,0 +1,39 @@
+h1{
+color: white;
+}
+
+h1 a{
+color: white;
+}
+
+h1 a:hover{
+}
+
+h1#logo a{
+  text-indent:-9999px;
+  display:block;
+  width:100px;
+  height:100px;
+  background:url(/images/logo.png)
+}
+
+@media (min-width: 992px)
+.modal-lg {
+  width:default;
+}
+
+.modal-body .form-group2 {
+  margin-bottom:20px;
+}
+
+#filter_tag {
+
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#rate_btn {
+    margin-top: 20px;
+}
+
