@@ -5,10 +5,7 @@ import com.theironyard.Command.UserCommand;
 import com.theironyard.Entities.Coffee;
 import com.theironyard.Entities.Tag;
 import com.theironyard.Entities.User;
-import com.theironyard.Repositories.CoffeeRepository;
-import com.theironyard.Repositories.RatingRepository;
-import com.theironyard.Repositories.TagRepository;
-import com.theironyard.Repositories.UserRepository;
+import com.theironyard.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +33,9 @@ public class NavigationController {
     CoffeeRepository coffeeRepository;
 
     @Autowired
+    RecentCoffeeRepository recentCoffeeRepository;
+
+    @Autowired
     TagRepository tagRepository;
 
     @Autowired
@@ -49,18 +49,17 @@ public class NavigationController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String getCommunityPage(Model model, HttpSession session, UserCommand command, String search){
         User user = userRepository.findFirstByUsername(command.getUsername());
-        List coffee = coffeeRepository.findAll();
-        Coffee recentCoffee = coffeeRepository.findBySubmitted(LocalDateTime.now());
+        List<Coffee> coffee = coffeeRepository.findAll();
         ArrayList <Coffee> recCoffee = new ArrayList<>();
-//            if (recentCoffee.getSubmitted().isAfter(LocalDateTime.now().minusDays(3))) {
-//                recCoffee.add(recentCoffee);
-//            } else if (recentCoffee.getSubmitted().isAfter(LocalDateTime.now().minusDays(3))) {
-//                recCoffee.remove(recentCoffee);
-//            }
+        for(Coffee c : coffee){
+            if(c.getSubmitted().isBefore(LocalDateTime.now()) && c.getSubmitted().isAfter(LocalDateTime.now().minusDays(1))){
+                recentCoffeeRepository.save(c);
+                recCoffee.add(c);
+            }
+        }
         model.addAttribute("user", user);
         model.addAttribute("coffee", coffee);
-        model.addAttribute("recent", recentCoffee);
-        model.addAttribute("recommend", recCoffee);
+        model.addAttribute("recent", recCoffee);
         session.setAttribute(CURRENT_USER, user);
         return "community-page";
     }
@@ -143,13 +142,16 @@ public class NavigationController {
      */
     @RequestMapping(path = "/coffee-list", method = RequestMethod.GET)
     public String getCoffeeList(Model model, HttpSession session, String tag, @RequestParam(defaultValue = "0") int page){
-        List coffee = coffeeRepository.findAll();
-        List tags = tagRepository.findAll();
-        Page<Coffee> coffees = coffeeRepository.findAll(new PageRequest(page, 10));
+        List<Tag> tags = tagRepository.findAll();
+        Page<Coffee> coffees;
         if(tag != null){
-            Tag filteredTags = tagRepository.findByDescription(tag);
-            coffee = coffeeRepository.findByTags(filteredTags);
+            Tag filteredTag = tagRepository.findByDescription(tag);
+            coffees = coffeeRepository.findByTags(new PageRequest(page, 10), filteredTag);
         }
+        else{
+            coffees = coffeeRepository.findAll(new PageRequest(page, 10));
+        }
+
         if(coffees.hasPrevious()){
             model.addAttribute("prev", true);
             model.addAttribute("prevPageNum", page - 1);
@@ -160,7 +162,6 @@ public class NavigationController {
             model.addAttribute("nextPageNum", page + 1);
         }
 
-        model.addAttribute("coffee", coffee);
         model.addAttribute("tags", tags);
         model.addAttribute("coffees", coffees);
         return "coffee-list";

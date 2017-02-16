@@ -41,8 +41,10 @@ public class Coffee {
     @OneToMany(mappedBy = "coffeeId")
     List<Rating> ratings = new ArrayList<>();
 
-
     public Coffee() {
+    }
+
+    public Coffee(String name, String s, double v, String name1) {
     }
 
     public Coffee(List<Tag> tags) {

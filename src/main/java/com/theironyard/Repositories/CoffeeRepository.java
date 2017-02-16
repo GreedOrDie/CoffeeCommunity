@@ -17,6 +17,7 @@ public interface CoffeeRepository extends JpaRepository<Coffee, Integer> {
     Coffee findBySubmitted(LocalDateTime submitted);
     List<Coffee> findByNameContainingIgnoreCase(String search);
     List<Coffee> findByTags(Tag tags);
-    Page<Coffee> findAll(Pageable pageable);  //GET THIS WORKING
+    Page<Coffee> findAll(Pageable pageable);
+    Page<Coffee> findByTags(Pageable pageable, Tag tag);
 
 }
