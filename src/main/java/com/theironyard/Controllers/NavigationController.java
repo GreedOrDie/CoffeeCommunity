@@ -1,7 +1,6 @@
 package com.theironyard.Controllers;
 
 import com.theironyard.Command.RatingCommand;
-import com.theironyard.Command.UserCommand;
 import com.theironyard.Entities.Coffee;
 import com.theironyard.Entities.Tag;
 import com.theironyard.Entities.User;
@@ -47,8 +46,7 @@ public class NavigationController {
      * @return
      */
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String getCommunityPage(Model model, HttpSession session, UserCommand command, String search){
-        User user = userRepository.findFirstByUsername(command.getUsername());
+    public String getCommunityPage(Model model, HttpSession session){
         List<Coffee> coffee = coffeeRepository.findAll();
         ArrayList <Coffee> recCoffee = new ArrayList<>();
         for(Coffee c : coffee){
@@ -57,24 +55,10 @@ public class NavigationController {
                 recCoffee.add(c);
             }
         }
-        model.addAttribute("user", user);
+
         model.addAttribute("coffee", coffee);
         model.addAttribute("recent", recCoffee);
-        session.setAttribute(CURRENT_USER, user);
         return "community-page";
-    }
-
-    /**
-     * Sets the session attribute to the logged in user
-     * @param session
-     * @param command
-     * @return
-     */
-    @RequestMapping(path = "/", method = RequestMethod.POST)
-    public String CommunityPage(HttpSession session, UserCommand command){
-        User user = userRepository.findFirstByUsername(command.getUsername());
-        session.setAttribute(CURRENT_USER, user);
-        return "redirect:/";
     }
 
     /**
@@ -83,7 +67,7 @@ public class NavigationController {
      * @return
      */
     @RequestMapping(path = "/user-account", method = RequestMethod.GET)
-    public String getUserAccount(Model model, HttpSession session, User user){
+    public String getUserAccount(Model model, HttpSession session){
         if(session.getAttribute(CURRENT_USER) == null){
             return "redirect:/user-exception";
         }
@@ -144,6 +128,7 @@ public class NavigationController {
     public String getCoffeeList(Model model, HttpSession session, String tag, @RequestParam(defaultValue = "0") int page){
         List<Tag> tags = tagRepository.findAll();
         Page<Coffee> coffees;
+
         if(tag != null){
             Tag filteredTag = tagRepository.findByDescription(tag);
             coffees = coffeeRepository.findByTags(new PageRequest(page, 10), filteredTag);
